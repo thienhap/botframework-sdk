@@ -1,6 +1,16 @@
-# Skills: Functional Testing Matrix
+# Skills: Validating skill functionality
 
 This document outlines the set of functional tests required to ensure skills and skill consumers function correctly across the breadth of the Bot Framework.
+
+## Goals
+
+Creating a solid set of test needs to enable the following purposes:
+
+1. Existing functionality can be validated, and any issues identified, fixed and documented.
+1. New functionality can be easily tested, without the need to recreate the complex topologies required when working with skills.
+1. Test infrastructure can be used either directly or as a template for support scenarios to repro customer issues.
+
+To support these goals, the testing infrastructure used to validate the functional tests derived from this document must be carefully considered.
 
 ## Scenarios
 
@@ -49,6 +59,7 @@ Using those examples, we can extrapolate a template for creating a realistic tes
   - SSO
   - OAuth prompt
   - OAuth card
+  - OAuth input
 
 ### Variables
 
@@ -66,7 +77,7 @@ Using those examples, we can extrapolate a template for creating a realistic tes
 
 ## Consumer/Skill architecture
 
-This section attempts to describe the most common consumer/skill topologies that can exist. The topologies given below are further complicated based on the variables above, as well as the SDK language of any particular bot (consumer or skill) in the topology.
+This section describes the most common consumer/skill topologies that can exist. The topologies given below are further complicated based on the variables above, as well as the SDK language of any particular bot (consumer or skill) in the topology.
 
 One of the most important things to keep in mind here is that any bot can act as a stand-alone bot, a consumer, or a skill, and may very well fulfill all three models at different times.
 

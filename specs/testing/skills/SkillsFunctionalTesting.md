@@ -66,7 +66,9 @@ Using those examples, we can extrapolate a template for creating a realistic tes
 
 ## Consumer/Skill architecture
 
-This section attempts to describe the most common consumer/skill topologies that can exist. The topologies given below are further complicated based on the variables above, as well as the SDK language of any particular bot (consumer or skill) in the topology. One of the most important things to keep in mind here is that any bot can act as a stand-alone bot, a consumer, or a skill, and may very well fulfill all three models at different times.
+This section attempts to describe the most common consumer/skill topologies that can exist. The topologies given below are further complicated based on the variables above, as well as the SDK language of any particular bot (consumer or skill) in the topology.
+
+One of the most important things to keep in mind here is that any bot can act as a stand-alone bot, a consumer, or a skill, and may very well fulfill all three models at different times.
 
 ### Simple
 
@@ -101,7 +103,7 @@ C2 --/
 A consumer uses a skill, which in turn consumes another skill.
 
 ```
-C -----> S1 ----> S2
+C1 -----> C2/S1 ----> S2
 ```
 
 ### Complex

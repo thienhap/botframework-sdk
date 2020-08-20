@@ -6,16 +6,27 @@ This document outlines the set of functional tests required to ensure skills and
 
 There are three components necessary to create the full list of testing scenarios.
 
-- **What the skill wants to do.** This is the primary pivot for the testing scenarios, given in the *things a skill might want to do* list below.
 - **State of the skill.** The current state of the skill, based on the *variables* list below.
 - **State of the consumer.** The current state of the consumer, based on the *variables* list below.
+- **What the skill wants to do.** This is the primary pivot for the testing scenarios, given in the *things a skill might want to do* list below.
 
-Given this, you end up with scenarios like:
+Given this, one can create scenarios like:
 
-> A skill sends a proactive message when the skill is not currently active and the consumer is actively engaged in a waterfall dialog with a different skill.
+> The consumer is actively engaged with a skill in an adaptive dialog, the skill uses adaptive dialogs, and the skill wants to send a proactive message.
+
+> The consumer is actively engaged with a _different_ skill in an adaptive dialog, the skill uses adaptive dialogs, and the skill wants to send a proactive message.
+
+> The consumer is not engaged with a skill, the skill uses adaptive dialogs, and the skill wants to send a proactive message.
+
+> The consumer is not engaged with a skill, the skill uses adaptive dialogs, and the skill wants to call `createConversation` in order to send a new proactive message.
+
+Using those examples, we can extrapolate a template for creating a realistic test scenario:
+
+> The consumer is in `someVariableState`, the skill is in `someVariableState`, and the skill wants to `performSomeAction`.
 
 ### Things a skill might want to do
 
+- Perform multi-turn dialogs, with child dialog/prompts
 - Send proactive messages
 - Receive and respond to invoke Activities
 - Send cards and respond to card actions
@@ -51,6 +62,70 @@ Given this, you end up with scenarios like:
 - Skill is currently inactive
 - Some _other_ skill is currently active
 - Parent bot is engaged in a _different_ dialog
+- Skill or consumer uses a custom adapter
+
+## Consumer/Skill architecture
+
+This section attempts to describe the most common consumer/skill topologies that can exist. The topologies given below are further complicated based on the variables above, as well as the SDK language of any particular bot (consumer or skill) in the topology. One of the most important things to keep in mind here is that any bot can act as a stand-alone bot, a consumer, or a skill, and may very well fulfill all three models at different times.
+
+### Simple
+
+In the simplest case there is a single consumer and a single skill.
+
+```
+C -----> S
+```
+
+### Multiple skills
+
+A single consumer with multiple skills.
+
+```
+      ----> S1
+C --<
+      ----> S2
+```
+
+### Multiple consumers
+
+A single skill is consumed by multiple consumers.
+
+```
+C1 --\
+      ------> S
+C2 --/
+```
+
+### Skill chaining
+
+A consumer uses a skill, which in turn consumes another skill.
+
+```
+C -----> S1 ----> S2
+```
+
+### Complex
+
+Combining multiple skills, multiple consumers, and skill chaining.
+
+```
+C1 --\                              ----> S3
+      ------> C3/S1 ----> C4/S2 --<
+C2 --<              \               ----> S4
+      ------> S5     -----> S6
+```
+
+### Circular
+
+A consumer uses a skill, which in turn consumes another skill, which in turn consumes the original consumer as a skill. In practice, this topology should probably be avoided, however nothing directly prevents it from occurring.
+
+```
+C1/S1 ----> C2/S2 --
+   ^                \----> C3/S3 --
+   |                               |
+   |------------------------------/
+
+```
 
 ## Glossary
 

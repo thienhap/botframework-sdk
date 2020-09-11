@@ -20,7 +20,7 @@ This document includes:
   - [2. Multi turn interaction with a skill](#2-multi-turn-interaction-with-a-skill)
   - [3. The skill needs to authenticate the user with an OAuthCard](#3-the-skill-needs-to-authenticate-the-user-with-an-oauthcard)
   - [4. The consumer authenticates the user and passes OAuth credentials to the skill using SSO](#4-the-consumer-authenticates-the-user-and-passes-oauth-credentials-to-the-skill-using-sso)
-  - [5. Skill sends proactive message to consumer](#5-skill-sends-proactive-message-to-consumer)
+  - [5. Skill sends a proactive message to consumer](#5-skill-sends-a-proactive-message-to-consumer)
   - [6. Skill calls another skill](#6-skill-calls-another-skill)
   - [7. A skill provides a teams task module](#7-a-skill-provides-a-teams-task-module)
   - [8. A skill uses team specific APIs](#8-a-skill-uses-team-specific-apis)
@@ -37,7 +37,6 @@ This document includes:
   - [Complex](#complex)
   - [Circular](#circular)
 - [Implementation notes](#implementation-notes)
-- [Testing matrix](#testing-matrix)
 - [Glossary](#glossary)
 
 ## Scenarios
@@ -55,55 +54,161 @@ Given this, one can create scenarios like:
 
 > A consumer bot sends an activity to a skill (e.g.: GetWeather) and the skill responds to the user and ends.
 
+**Testing matrix**
+
+- Skill: GetWeather
+- Topology: Simple
+
+![Bot SDLC](media/Simple.jpg)
+
 **Variables**
 
-- Consumer type: Composer, VA Bot, PVA.
-- Skill type: Composer, Coded
-- Topology: Simple
-- Languages: C#, JS, Python
 - Auth context: Public Cloud, Gov Cloud, Sandboxed
 - Delivery mode: Normal, ExpectReplies
+
+**Alternate flows**
+
+- TODO
+
+**Total test cases:** 96 (not including alternate flows)
+
 
 ### 2. Multi turn interaction with a skill
 
 > A consumer bot starts a multi turn interaction with a skill (e.g.: book a flight) and handles multiple turns (2 or more) until the skill completes the task.
 
-**Alternate flows**
+**Testing matrix**
 
-1. The consumer cancels the skill (sends EndOfConversation)<br />
-2. The consumer sends parameters to the skill<br />
-3. The skill sends a result to the consumer<br />
-4. The skill sends an event to the consumer (GetLocation) and the consumer sends an event back to the skill.<br />
-5. The skill throws and exception and fails (the consumer gets a 500 error)<br />
+- Skill: BookFlight
+- Topology: Simple
+
+![Bot SDLC](media/Simple.jpg)
 
 **Variables**
 
-- Consumer type: Composer, VA Bot, PVA.
-- Skill type: Composer, Coded
-- Topology: Simple
-- Languages: C#, JS, Python
 - Auth context: Public Cloud, Gov Cloud, Sandboxed
 - Delivery mode: Normal, ExpectReplies
+
+**Alternate flows**
+
+1. The consumer cancels the skill (sends EndOfConversation)
+2. The consumer sends parameters to the skill<
+3. The skill sends a result to the consumer
+4. The skill sends an event to the consumer (GetLocation) and the consumer sends an event back to the skill.
+5. The skill throws and exception and fails (the consumer gets a 500 error)
+
+**Total test cases:** 96 (not including alternate flows)
 
 ### 3. The skill needs to authenticate the user with an OAuthCard
 
 > A consumer bot starts a multi turn interaction with a skill (e.g.: how does my day look like) and the skill renders an OAuthPrompt to allow the user to log in, once the skill obtains a token it performs an operation, returns a response to the user and logs it out.
 
+**Testing matrix**
+
+- Skill: OAuthSkill
+- Topology: Simple
+
+![Bot SDLC](media/Simple.jpg)
+
+**Variables**
+
+- Auth context: Public Cloud, Gov Cloud, Sandboxed
+- Delivery mode: Normal, ExpectReplies
+
+**Alternate flows**
+
+- TODO
+
+**Total test cases:** 96 (not including alternate flows)
+
 ### 4. The consumer authenticates the user and passes OAuth credentials to the skill using SSO
 
 > A consumer bot starts a multi turn interaction with a skill (e.g.: how does my day look like) and the skill renders an OAuthPrompt to allow the user to log in, once the skill obtains a token it performs an operation, returns a response to the user and logs it out.
 
-### 5. Skill sends proactive message to consumer
+**Testing matrix**
+
+- Skill: TBD
+- Topology: Simple
+
+![Bot SDLC](media/Simple.jpg)
+
+**Variables**
+
+- Auth context: Public Cloud, Gov Cloud, Sandboxed
+- Delivery mode: Normal, ExpectReplies
+
+**Alternate flows**
+
+- TODO
+
+**Total test cases:** 96 (not including alternate flows)
+
+### 5. Skill sends a proactive message to consumer
 
 > TODO
+
+**Testing matrix**
+
+- Skill: TBD
+- Topology: Simple
+
+![Bot SDLC](media/Simple.jpg)
+
+**Variables**
+
+- Auth context: Public Cloud, Gov Cloud, Sandboxed
+- Delivery mode: Normal, ExpectReplies
+
+**Alternate flows**
+
+- TODO
+
+**Total test cases:** 96 (not including alternate flows)
 
 ### 6. Skill calls another skill
 
 > TODO
 
+**Testing matrix**
+
+- Skill/Consumer: TBD
+- Skill: TBD
+- Topology: Skill chaining
+
+![Bot SDLC](media/Chaining.jpg)
+
+**Variables**
+
+- Auth context: Public Cloud, Gov Cloud, Sandboxed
+- Delivery mode: Normal, ExpectReplies
+
+**Alternate flows**
+
+- TODO
+
+**Total test cases:** 192 (not including alternate flows)
+
 ### 7. A skill provides a teams task module
 
 > TODO
+
+**Testing matrix**
+
+- Skill: TeamsBot
+- Topology: Simple
+
+![Bot SDLC](media/Simple.jpg)
+
+**Variables**
+
+- Auth context: Public Cloud, Gov Cloud, Sandboxed
+- Delivery mode: Normal, ExpectReplies
+
+**Alternate flows**
+
+- TODO
+
+**Total test cases:** 96 (not including alternate flows)
 
 ### 8. A skill uses team specific APIs
 
@@ -112,13 +217,68 @@ Given this, one can create scenarios like:
 > - Retrieve list of channels in a team
 > - Get team info
 
+**Testing matrix**
+
+- Skill: TeamsBot
+- Topology: Simple
+
+![Bot SDLC](media/Simple.jpg)
+
+**Variables**
+
+- Auth context: Public Cloud, Gov Cloud, Sandboxed
+- Delivery mode: Normal, ExpectReplies
+
+**Alternate flows**
+
+- TODO
+
+**Total test cases:** 96 (not including alternate flows)
+
 ### 9. A receives an attachment
 
 > As part of a multi turn conversation a skill is expecting a file that needs to be uploaded consumer bot and then relayed to the skill
 
+**Testing matrix**
+
+- Skill: TBD
+- Topology: Simple
+
+![Bot SDLC](media/Simple.jpg)
+
+**Variables**
+
+- Auth context: Public Cloud, Gov Cloud, Sandboxed
+- Delivery mode: Normal, ExpectReplies
+- Channel: TODO not sure about this yet
+
+**Alternate flows**
+
+- TODO
+
+**Total test cases:** 96? (not including alternate flows)
+
 ### 10. Card actions that generate invokes and message activities.
 
 > TODO
+
+**Testing matrix**
+
+- Skill: TBD
+- Topology: Simple
+
+![Bot SDLC](media/Simple.jpg)
+
+**Variables**
+
+- Auth context: Public Cloud, Gov Cloud, Sandboxed
+- Delivery mode: Normal, ExpectReplies
+
+**Alternate flows**
+
+- TODO
+
+**Total test cases:** 96 (not including alternate flows)
 
 ### XX. Draft scenarios
 
@@ -257,7 +417,7 @@ Based on the scenarios described above we will need to build the following artif
 **Consumers**
 
 - Composer consumer bot (C# only for now)
-- VA Scaler consumer bot (C# and JS)
+- VA consumer bot (C# and TS)
 - PVA consumer bot (C#)
 
 **Skills**
@@ -271,11 +431,6 @@ Based on the scenarios described above we will need to build the following artif
 
 - Proactive service (C#)
 - Transcript based test runner (C#)
-
-## Testing matrix
-Based on the bots and scenarios above we can build the following testing matrix:
-
-
 
 ## Glossary
 

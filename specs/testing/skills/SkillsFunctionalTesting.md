@@ -24,7 +24,9 @@ This document includes:
   - [6. Skill calls another skill](#6-skill-calls-another-skill)
   - [7. A skill provides a teams task module](#7-a-skill-provides-a-teams-task-module)
   - [8. A skill uses team specific APIs](#8-a-skill-uses-team-specific-apis)
-  - [Draft scenarios](#draft-scenarios)
+  - [9. A receives an attachment](#9-a-receives-an-attachment)
+  - [10. Card actions that generate invokes and message activities.](#10-card-actions-that-generate-invokes-and-message-activities)
+  - [XX. Draft scenarios](#xx-draft-scenarios)
   - [Things a skill might want to do](#things-a-skill-might-want-to-do)
 - [Variables](#variables)
 - [Consumer/Skill architecture](#consumerskill-architecture)
@@ -35,6 +37,7 @@ This document includes:
   - [Complex](#complex)
   - [Circular](#circular)
 - [Implementation notes](#implementation-notes)
+- [Testing matrix](#testing-matrix)
 - [Glossary](#glossary)
 
 ## Scenarios
@@ -101,13 +104,20 @@ Delivery mode: Normal, ExpectReplies
 
 ### 8. A skill uses team specific APIs
 
-> Currently not supported but it would involve things like:
+> TODO: Currently not supported but it would involve things like:
 >
 > - Retrieve list of channels in a team
 > - Get team info
 
+### 9. A receives an attachment
 
-### Draft scenarios
+> As part of a multi turn conversation a skill is expecting a file that needs to be uploaded consumer bot and then relayed to the skill
+
+### 10. Card actions that generate invokes and message activities.
+
+> TODO
+
+### XX. Draft scenarios
 
 This section contains raw ideas to be incorporated in the scenarios enumerated above
 
@@ -118,6 +128,8 @@ This section contains raw ideas to be incorporated in the scenarios enumerated a
 > The consumer is not engaged with a skill, the skill uses adaptive dialogs, and the skill wants to send a proactive message.
 
 > The consumer is not engaged with a skill, the skill uses adaptive dialogs, and the skill wants to call `createConversation` in order to send a new proactive message.
+
+> The consumer engages with a skill in a group conversation. 
 
 Using those examples, we can extrapolate a template for creating a realistic test scenario:
 
@@ -162,14 +174,13 @@ Using those examples, we can extrapolate a template for creating a realistic tes
 - Skill is currently inactive
 - Some _other_ skill is currently active
 - Parent bot is engaged in a _different_ dialog
-- Skill or consumer uses a custom adapter
 - Authentication context, the skill and consumer are deployed to the public cloud, gov cloud, or a sandboxed environment.
 - Network protocol: the consumer is accessed over straight HTTP (webchat) or Web Sockets (streaming clients)
 - BotFramework version for the skill: 4.x or 3.x.
 - Bot runtime: Composer bot, PVA or SDK coded bot.
 - Channel: Emulator, Teams, DirectLine
 - Bot programming language: C#, JS, Python or Java.
-- Bot Adapter: OOTB, custom channel
+- Bot Adapter: Skill or consumer use a OOTB adapter or custom channel adapter
 
 ## Consumer/Skill architecture
 
@@ -240,16 +251,28 @@ C1/S1 ----> C2/S2 --
 
 Based on the scenarios described above we will need to build the following artifacts to implement and run functional tests on skills:
 
+**Consumers**
+
 - Composer consumer bot (C# only for now)
 - VA Scaler consumer bot (C# and JS)
 - PVA consumer bot (C#)
-- Composer GetWeather skill (C#)
-- Coded GetWeather skill (C#, JS, Python)
-- Travel skill (C#, JS, Python)
+
+**Skills**
+
+- GetWeather skill (Composer, C# no dialogs, JS no dialogs, Python no dialogs)
+- Travel skill (Composer, C# waterfall, JS waterfall, Python waterfall)
 - OAuth skill (C#, JS, Python)
 - Teams skill (C#, JS, Python)
+
+**Infrastructure**
+
 - Proactive service (C#)
 - Transcript based test runner (C#)
+
+## Testing matrix
+Based on the bots and scenarios above we can build the following testing matrix:
+
+
 
 ## Glossary
 

@@ -24,7 +24,7 @@ This document includes:
   - [6. Skill calls another skill](#6-skill-calls-another-skill)
   - [7. A skill provides a teams task module](#7-a-skill-provides-a-teams-task-module)
   - [8. A skill uses team specific APIs](#8-a-skill-uses-team-specific-apis)
-  - [9. A receives an attachment](#9-a-receives-an-attachment)
+  - [9. A skill receives an attachment](#9-a-skill-receives-an-attachment)
   - [10. Card actions that generate invokes and message activities.](#10-card-actions-that-generate-invokes-and-message-activities)
   - [XX. Draft scenarios](#xx-draft-scenarios)
   - [Things a skill might want to do](#things-a-skill-might-want-to-do)
@@ -235,7 +235,7 @@ Given this, one can create scenarios like:
 
 **Total test cases:** 96 (not including alternate flows)
 
-### 9. A receives an attachment
+### 9. A skill receives an attachment
 
 > As part of a multi turn conversation a skill is expecting a file that needs to be uploaded consumer bot and then relayed to the skill
 

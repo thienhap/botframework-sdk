@@ -67,12 +67,12 @@ Delivery mode: Normal, ExpectReplies
 
 > A consumer bot starts a multi turn interaction with a skill (e.g.: book a flight) and handles multiple turns (2 or more) until the skill completes the task.
 
-**Alternate flows**
-2.1 The consumer cancels the skill (sends EndOfConversation)
-2.2 The consumer sends parameters to the skill
-2.3 The skill sends a result to the consumer
-2.4 The skill sends an event to the consumer (GetLocation) and the consumer sends an event back to the skill.
-2.5 The skill throws and exception and fails (the consumer gets a 500 error)
+**Alternate flows**<br />
+2.1 The consumer cancels the skill (sends EndOfConversation)<br />
+2.2 The consumer sends parameters to the skill<br />
+2.3 The skill sends a result to the consumer<br />
+2.4 The skill sends an event to the consumer (GetLocation) and the consumer sends an event back to the skill.<br />
+2.5 The skill throws and exception and fails (the consumer gets a 500 error)<br />
 
 **Variables**
 Consumer type: Composer, VA Bot, PVA.

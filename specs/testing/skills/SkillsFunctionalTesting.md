@@ -56,31 +56,34 @@ Given this, one can create scenarios like:
 > A consumer bot sends an activity to a skill (e.g.: GetWeather) and the skill responds to the user and ends.
 
 **Variables**
-Consumer type: Composer, VA Bot, PVA.
-Skill type: Composer, Coded
-Topology: Simple
-Languages: C#, JS, Python
-Auth context: Public Cloud, Gov Cloud, Sandboxed
-Delivery mode: Normal, ExpectReplies
+
+- Consumer type: Composer, VA Bot, PVA.
+- Skill type: Composer, Coded
+- Topology: Simple
+- Languages: C#, JS, Python
+- Auth context: Public Cloud, Gov Cloud, Sandboxed
+- Delivery mode: Normal, ExpectReplies
 
 ### 2. Multi turn interaction with a skill
 
 > A consumer bot starts a multi turn interaction with a skill (e.g.: book a flight) and handles multiple turns (2 or more) until the skill completes the task.
 
-**Alternate flows**<br />
-2.1 The consumer cancels the skill (sends EndOfConversation)<br />
-2.2 The consumer sends parameters to the skill<br />
-2.3 The skill sends a result to the consumer<br />
-2.4 The skill sends an event to the consumer (GetLocation) and the consumer sends an event back to the skill.<br />
-2.5 The skill throws and exception and fails (the consumer gets a 500 error)<br />
+**Alternate flows**
+
+1. The consumer cancels the skill (sends EndOfConversation)<br />
+2. The consumer sends parameters to the skill<br />
+3. The skill sends a result to the consumer<br />
+4. The skill sends an event to the consumer (GetLocation) and the consumer sends an event back to the skill.<br />
+5. The skill throws and exception and fails (the consumer gets a 500 error)<br />
 
 **Variables**
-Consumer type: Composer, VA Bot, PVA.
-Skill type: Composer, Coded
-Topology: Simple
-Languages: C#, JS, Python
-Auth context: Public Cloud, Gov Cloud, Sandboxed
-Delivery mode: Normal, ExpectReplies
+
+- Consumer type: Composer, VA Bot, PVA.
+- Skill type: Composer, Coded
+- Topology: Simple
+- Languages: C#, JS, Python
+- Auth context: Public Cloud, Gov Cloud, Sandboxed
+- Delivery mode: Normal, ExpectReplies
 
 ### 3. The skill needs to authenticate the user with an OAuthCard
 

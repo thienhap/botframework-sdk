@@ -1,19 +1,19 @@
 # Skills: Validating skill functionality (DRAFT) <!-- omit in toc -->
 
-This document outlines the set of functional tests required to ensure skills and skill consumers function correctly across the breadth of the Bot Framework.
+## Summary <!-- omit in toc -->
 
-## Goals <!-- omit in toc -->
+Functional tests aim to ensure skills and skill consumers function correctly across the breadth of the Bot Framework.
 
-Creating a solid set of test needs to enable the following purposes:
+### High level design goals <!-- omit in toc -->
 
-1. Existing functionality can be validated, and any issues identified, fixed and documented.
+1. Validate existing functionality consistently and identify issues and potential regressions.
 2. New functionality can be easily tested, without the need to recreate the complex topologies required when working with skills.
-3. Test infrastructure can be used either directly or as a template for support scenarios to repro customer issues.
-4. Test the most common complex scenarios. Simple scenarios like Echo Bot or protocol tests are not in scope for functional tests.
+3. The test infrastructure can be used either directly or as a template for support scenarios to repro customer issues.
+4. Execute automated functional tests regularly (as part of the CI/CD pipeline, scheduled or triggered manually).
 
 To support these goals, the testing infrastructure used to validate the functional tests derived from this document must be carefully considered.
 
-This document includes:
+## Contents <!-- omit in toc -->
 
 - [Scenarios](#scenarios)
   - [1. Single turn interaction with a skill](#1-single-turn-interaction-with-a-skill)
@@ -41,14 +41,26 @@ This document includes:
 
 ## Scenarios
 
+This section describes the testing scenarios for skills, for each one of them we provide a  high level description of the primary test case, the type of consumers used, the skill (or skills) involved and the [consumer/skill architecture](#consumerskill-architecture) used to deploy the testing components.
+
+The different permutations between consumers, skills and their implementation language are represented using a _test matrix_.
+
+The _variables_ section, lists the set of [variables](#variables) that apply to the test case and  need to be configured for each case in the matrix.
+
+Wherever is relevant, we also include a list of _alternate flows_ that describe small variations in the test case (e.g.: state of the consumer, state of the skill, error condition, special considerations).
+
+The skill bots have been implement so they implement the key BF feature at least once.
+
+Given these elements, the number of test cases for each scenario can be calculated by multiplying the number of permutations in the matrix by the number of values for each variable and then multiplied by the number of alternate flows.
+
+The 
+
 There are four components necessary to create the full list of testing scenarios.
 
 - **[Consumer/Skill architecture](#consumerskill-architecture).** The topology used to deploy the consumer and the skills.
 - **State of the skill.** The current state of the skill, based on the *variables* list below.
 - **State of the consumer.** The current state of the consumer, based on the *variables* list below.
 - **What the skill wants to do.** This is the primary pivot for the testing scenarios, given in the *things a skill might want to do* list below.
-
-Given this, one can create scenarios like:
 
 ### 1. Single turn interaction with a skill
 
